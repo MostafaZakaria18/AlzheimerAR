@@ -1,8 +1,9 @@
 const SensorLog = require('../models/SensorLog');
+const asyncHandler = require('../middleware/async');
 
-const asyncHandler = fn =>(req, res, next)=>{
-    Promise.resolve(fn(req, res, next)).catch(next);
-}; 
+// const asyncHandler = fn =>(req, res, next)=>{
+//     Promise.resolve(fn(req, res, next)).catch(next);
+// }; 
 
 const checkCriticalAlerts = (data) =>{
     if(data.dataType =='fall_detection' && data.value && data.value.status=== 'Critical'){

@@ -1,10 +1,11 @@
-const Patient = require('../models/patient');
+const Patient = require('../models/Patient');
 const Reminder = require('../models/Reminder');
 const SensorLog = require('../models/SensorLog');
+const asyncHandler = require('../middleware/async');
 
-const asyncHandler = fn =>(req, res, next)=>{
-    Promise.resolve(fn(req, res, next)).catch(next);
-};
+// const asyncHandler = fn =>(req, res, next)=>{
+//     Promise.resolve(fn(req, res, next)).catch(next);
+// };
 
 //patient montitring
 exports.getPatientStatus = asyncHandler(async(req, res)=>{

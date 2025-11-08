@@ -9,10 +9,11 @@ const PatientSchema = new mongoose.Schema({
     dateOfBirth:{
         type: Date
     },
-    CaregiverId:{
-        type: mongoose.Schema.Types.ObjectId,
-        //type: String,
-        //required: true
+    caregiver:{
+        type: mongoose.Schema.ObjectId,
+        ref:'Caregiver',
+        required: false,
+        unique: true
     },
     homeLocation:{
         type: String

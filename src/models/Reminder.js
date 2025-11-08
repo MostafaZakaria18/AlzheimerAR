@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const patient = require('./patient');
+const patient = require('./Patient');
 
 const ReminderSchema = new mongoose.Schema({
     patient:{

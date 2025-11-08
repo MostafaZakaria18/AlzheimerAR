@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const patient = require('./patient');
+const patient = require('./Patient');
 
 const SensorLogSchema = new mongoose.Schema({
     patient:{
