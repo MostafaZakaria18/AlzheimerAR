@@ -1,9 +1,9 @@
 const Relative = require('../models/Relative');
 const asyncHandler = require('../middleware/async');
-const ErrorResponse = require('../middleware/error');
+const ErrorResponse = require('../utils/errorResponse');
 const fs = require('fs');
 const path = require('path');
-const { timeStamp } = require('console');
+
 
 const UPLOAD_BASE_DIR = path.join(__dirname, '..', '..', 'uploads', 'relatives');
 
@@ -15,8 +15,8 @@ const saveBase64Image = (base64Data, patientId, relativeName)=>{
     if(data.includes(',')){
         data = data.split(',')[1];
     }
-    const exitMatch = base64Data.match(/^data:image\/(\w+);base64,/);
-    const ext = exitMatch ? `.${exitMatch[1]}` : '.jpg';
+    const extMatch = base64Data.match(/^data:image\/(\w+);base64,/);
+    const ext = extMatch ? `.${extMatch[1]}` : '.jpg';
 
     const sanitizedName = relativeName.replace(/\s/g,'_');
     const filename = `${patientId}_${sanitizedName}_${Date.now()}${ext}`;
@@ -38,7 +38,7 @@ exports.createRelative = asyncHandler(async(req, res, next)=>{
     try{
         localImagePath = saveBase64Image(image_data, patient, recognitionKey);
 
-        const Relative = await Relative.create({
+        const relative = await Relative.create({
             patient,
             recognitionKey,
             name,

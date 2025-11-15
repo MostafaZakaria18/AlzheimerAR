@@ -2,9 +2,8 @@ const {spawn} = require('child_process');
 const fs = require('fs');
 const asyncHandler = require('../middleware/async');
 const path = require('path');
-const ErrorResponse = require('../middleware/error');
+const ErrorResponse = require('../utils/errorResponse'); 
 const Relative = require('../models/Relative');
-const { rejects } = require('assert');
 
 const findUserByRecognitionKey = async (key) =>{
     const person = await Relative.findOne({recognitionKey: key});
@@ -12,6 +11,8 @@ const findUserByRecognitionKey = async (key) =>{
 };
 
 exports.verifyFace = asyncHandler(async(req, res, next)=>{
+    console.log('Received body for verifyFace:', req.body.patientId ? { patientId: req.body.patientId, hasImageData: !!req.body.imageData } : 'No Body Received');
+
     let {imageData, patientId} = req.body;
     const fileName = `temp_face_${patientId}_${Date.now()}.jpg`;
     const tempDir = path.join(__dirname, '..', '..', 'temp_images');
