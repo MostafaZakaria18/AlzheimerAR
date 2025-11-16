@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const recognitionController = require('../controllers/recognitionController');
+const recognitionController = require("../controllers/recognitionController");
 
 // recognition/verify
-router.post('/verify', recognitionController.verifyFace);
+router.post("/verify", recognitionController.verifyFace);
 
 module.exports = router;

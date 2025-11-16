@@ -60,10 +60,7 @@ def load_known_faces():
     return known_encodings, known_keys
 
 def verify_face_match(input_image_path):
-    """
-    Performs the face verification against all known encodings.
-    Returns: The recognition key of the matching person, or None.
-    """
+
     known_encodings, known_keys = load_known_faces()
     
     if not known_encodings:
