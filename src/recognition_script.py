@@ -19,10 +19,7 @@ UPLOADS_DIR = os.path.join(SCRIPT_DIR, '..', 'uploads', 'relatives')
 
 
 def load_known_faces():
-    """
-    Loads all known faces from the UPLOADS_DIR and creates their encodings.
-    Returns: Tuple (known_encodings, known_keys)
-    """
+
     known_encodings = []
     known_keys = []
     
